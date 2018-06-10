@@ -80,7 +80,7 @@ $(document).on('click', '.gif', function(){
 
 
 // function for displaying food gifs
-$(document).on("click", "#gifsView", displayGifs);
+$(document).on("click", ".food", displayGifs);
 
 // initially calls the makeButtons function
 makeButtons();
