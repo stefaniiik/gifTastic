@@ -1,13 +1,13 @@
 // create an array 
-var topics = ["burgers", "pizza", "milkshake", "hotdogs", "nachos", "pasta", "tacos", "bread", "cheese", "churros"]
+var topics = ["burgers", "pizza", "milkshake", "hotdogs", "nachos", "pasta", "tacos", "bread", "cheese", "churros"];
 
 // creates buttons for each of these
 function makeButtons(){ 
-	// deletes the food prior to adding new shows so there are no repeat buttons
+	// deletes the food prior to adding new food so there are no repeat buttons
 	$('#buttonsView').empty();
-	// loops through the shows array
+	// loops through the topics array
 	for (var i = 0; i < topics.length; i++){
-		// dynamically makes buttons for every show in the array
+		// dynamically makes buttons for every food in the array
 		var a = $('<button>') 
 		a.addClass('food'); // add a class
 		a.attr('data-name', topics[i]); // add a data-attribute
@@ -19,10 +19,10 @@ function makeButtons(){
 // handles addFood button event
 $("#addFood").on("click", function(){
 
-	// grabs the user show input
-	var show = $("#foodInput").val().trim();
+	// grabs the user food input
+	var userFood = $("#foodInput").val().trim();
 	// that input is now added to the array
-	shows.push(show);
+	topics.push(userFood);
 	// the makeButtons function is called so added buttons show as well
 	makeButtons();
 	// this line is so users can hit "enter" instead of clicking the submit button
@@ -32,7 +32,7 @@ $("#addFood").on("click", function(){
 // function to display gifs
 function displayGifs(){
 	var food = $(this).attr("data-name");
-	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + food + "&limit=0&api_key=xyHRo9RNsd34WzC9605WzoGgmFnOVPSp";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=xyHRo9RNsd34WzC9605WzoGgmFnOVPSp&q=" + food + "&limit=10&offset=0&rating=PG-13&lang=en";
 
 		// creates ajax call
 		$.ajax({
@@ -54,10 +54,10 @@ function displayGifs(){
 					foodGif.attr('data-state', 'still');
 					foodGif.addClass('gif');
 					foodGif.attr('data-animate', results[i].images.fixed_height.url);
-				// var rating = results[i].rating;
-				// var p = $('<p>').text('Rating: ' + rating);
-				gifDiv.append(showGif)
-				// gifDiv.append(p)
+				var rating = results[i].rating;
+				var p = $('<p>').text('Rating: ' + rating);
+				gifDiv.append(displayGifs)
+				gifDiv.append(p)
 
 				$("#gifsView").prepend(gifDiv);
 			}
@@ -79,8 +79,8 @@ $(document).on('click', '.gif', function(){
 
 
 
-// function for displaying show gifs
-$(document).on("click", ".show", displayGifs);
+// function for displaying food gifs
+$(document).on("click", "#gifsView", displayGifs);
 
 // initially calls the makeButtons function
 makeButtons();
