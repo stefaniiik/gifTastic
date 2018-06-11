@@ -1,0 +1,9 @@
+body {
+    background-color: #FCF3CF;
+}
+.jumbotron {
+    font-family: 'Fugaz One', cursive;
+    color: midnightblue;
+    background-image: url(../images/iceCream.jpg);
+    margin-top: 40px;
+}
