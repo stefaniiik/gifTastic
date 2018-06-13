@@ -4,7 +4,7 @@ $(document).ready(function(){
 // function to create GIFs
     function displayImg(){
 
-        $("#display-images").empty();
+        // $("#display-images").empty();
         var input = $(this).attr("data-name");
         var limit = 10;
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=xyHRo9RNsd34WzC9605WzoGgmFnOVPSp";   
@@ -21,11 +21,21 @@ $(document).ready(function(){
                 displayDiv.addClass("holder");
 // still and animated images
                 var image = $("<img>");
-                image.attr("src", results[j].images.original_still.url);
-                image.attr("data-still", results[j].images.original_still.url);
-                image.attr("data-animate", results[j].images.original.url);
-                image.attr("data-state", "still");
-                image.attr("class", "gif");
+                // image.attr("src", results[j].images.original_still.url);
+                // image.attr("data-still", results[j].images.original_still.url);
+                // image.attr("data-animate", results[j].images.original.url);
+                // image.attr("data-state", "still");
+                // image.attr("class", "gif");
+
+                image.attr(
+                    {
+                        "src": results[j].images.original_still.url,
+                        "data-still": results[j].images.original_still.url,
+                        "data-animate": results[j].images.original.url,
+                        "data-state": "still",
+                        "class": "gif"
+                    }
+                );
                 displayDiv.prepend(image);
 // display rating
                 var rating = results[j].rating;
@@ -33,7 +43,7 @@ $(document).ready(function(){
                 var pRating = $("<p>").text("Rating: " + rating);
                 displayDiv.append(pRating)
 
-                $("#display-images").append(displayDiv);
+                $("#display-images").prepend(displayDiv);
             }
         });
     }
