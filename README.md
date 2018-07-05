@@ -15,4 +15,6 @@ Enter a term into the search box. As you enter terms into the search box, button
 <ul>giphy API</ul>
 
 
+You can see the deployed webiste here: https://stefaniiik.github.io/gifTastic/
+
 
